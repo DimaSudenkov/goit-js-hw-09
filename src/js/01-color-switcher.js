@@ -3,6 +3,9 @@ const selectors = {
   start: document.querySelector('button[data-start]'),
   stop: document.querySelector('button[data-stop]')
 }
+
+let timerId = null;
+
 selectors.stop.disabled = true;
 
 selectors.start.addEventListener('click', handlerClickStart);
@@ -13,15 +16,15 @@ function getRandomHexColor() {
 }
 
 function handlerClickStart() {
-  timerId = setInterval(() => {
+  timerId = setInterval((_) => {
     selectors.body.style.backgroundColor = getRandomHexColor()
   }, 1000);
   selectors.start.disabled = true;
   selectors.stop.disabled = false;
-}
+};
 
 function handlerClickStop() {
   clearInterval(timerId);
   selectors.stop.disabled = true;
   selectors.start.disabled = false;
-}
+};
